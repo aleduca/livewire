@@ -6,7 +6,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // auth()->loginUsingId(23);
+        auth()->loginUsingId(27);
 
         // auth()->logout();
 

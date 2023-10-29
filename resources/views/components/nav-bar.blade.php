@@ -11,5 +11,7 @@
         </li>
       </ul>
     </div>
+    @livewire('login')
+    @livewire('teste')
   </div>
 </nav>

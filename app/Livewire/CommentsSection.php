@@ -3,8 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Comments;
-use App\Models\Reply;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -14,31 +12,19 @@ class CommentsSection extends Component
 
     public $post;
 
-    public $canReplyTo;
-    public $replyToComment;
-
     // #[Rule('required|min:10', as:'comentario')]
     public string $comment;
 
-    // #[Rule('required|min:10', as:'resposta')]
-    public string $reply;
+    protected $paginationTheme = 'bootstrap';
 
-    public function replyTo(int $commentId)
-    {
-        if ($this->canReplyTo !== $commentId) {
-            $this->canReplyTo = $commentId;
-            $this->replyToComment = $this->post->comments->find($commentId);
-        } else {
-            $this->canReplyTo = null;
-        }
+    protected $validationAttributes = [
+        'comment' => 'comentário',
+        'reply' => 'resposta',
+    ];
 
-        $this->js(<<<JS
-           window.scrollTo({
-                top:document.querySelector('#comments-form').offsetTop,
-                behavior: "smooth",
-            })
-        JS);
-    }
+    protected $listeners = [
+        'refresh' => '$refresh',
+    ];
 
     public function commentTo()
     {
@@ -52,39 +38,12 @@ class CommentsSection extends Component
             'comment' => $this->comment,
         ]);
 
-        $this->comment = '';
+        // $this->comment = '';
+        $this->reset('comment');
 
         $this->js(<<<JS
             swal.fire({
             title: 'Comment added successfully',
-            icon: 'success',
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-        })
-        JS);
-    }
-
-    public function replyComment()
-    {
-        $this->validate([
-            'reply' => 'required|min:10',
-        ]);
-
-        Reply::create([
-            'user_id' => auth()->id(),
-            'post_id' => $this->post->id,
-            'comment_id' => $this->replyToComment->id,
-            'reply' => $this->reply,
-        ]);
-
-        $this->reply = '';
-
-        $this->js(<<<JS
-            swal.fire({
-            title: 'Reply added successfully',
             icon: 'success',
             toast: true,
             position: 'top-end',
