@@ -2,7 +2,7 @@
 
 @section('content')
 
-@livewire('reply-modal');
+@livewire('reply-modal')
 
 <div class="row">
   <!--Grid column-->
