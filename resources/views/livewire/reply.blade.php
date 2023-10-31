@@ -11,7 +11,7 @@
 
             <span class="small">- {{ $reply->created_at->diffForHumans()}}</span>
           </p>
-          <a href="#" wire:click.prevent='delete({{$reply->id}})'><i class=" fas fa-reply fa-xs"></i><span class="small">
+          <a href="#" wire:click.prevent='delete'><i class=" fas fa-reply fa-xs"></i><span class="small">
               <i class="bi bi-trash"></i>
             </span></a>
         </div>

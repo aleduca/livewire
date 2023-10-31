@@ -21,7 +21,7 @@
 
                 <div class="form-outline w-100">
 
-                  <textarea wire:model.live.debounce.350ms='reply' class="form-control" id="textAreaExample" rows="4" style="background: #fff;"></textarea>
+                  <textarea wire:model.live.debounce.350ms='reply' class="form-control" id="textAreaExample" rows="4" style="background: #fff"></textarea>
                   @error('reply')
                   <span class="text text-danger mb-3">{{ $message }}</span>
                   @enderror

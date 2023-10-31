@@ -7,12 +7,12 @@ use Livewire\Component;
 class Teste extends Component
 {
     protected $listeners = [
-        'loggedIn' => 'loggedIn',
+        'refresh' => 'refreshed',
     ];
 
-    public function loggedIn(string $message)
+    public function refreshed()
     {
-        dd($message);
+        dd('refreshed from teste');
     }
 
     public function render()

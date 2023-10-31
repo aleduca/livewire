@@ -12,13 +12,15 @@ class ReplyModal extends Component
     #[Rule('required|max:200', as:'Reply')]
     public $reply;
     // protected $listeners = [
-    //     'open-modal' => 'open_modal',
+    //     'replied' => 'replied',
     // ];
 
     public $replyToComment;
 
     public function replyComment()
     {
+        $this->validate();
+
         Reply::create([
             'comment_id' => $this->replyToComment['id'],
             'user_id' => auth()->id(),
@@ -42,7 +44,8 @@ class ReplyModal extends Component
 
         $this->reset('reply');
 
-        $this->dispatch('refresh');
+        $this->dispatch('refresh')->to(CommentsSection::class);
+        $this->dispatch('replied')->self();
     }
 
     #[On('open-modal')]

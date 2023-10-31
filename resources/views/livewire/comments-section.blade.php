@@ -20,7 +20,6 @@
                 @forelse($comments as $comment)
                 @livewire('comment', [
                 'comment' => $comment,
-                'post' => $post
                 ], key(uniqId()))
                 @empty
                 <p>No comments here, be the first</p>

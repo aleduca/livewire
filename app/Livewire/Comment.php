@@ -7,20 +7,24 @@ use Livewire\Component;
 class Comment extends Component
 {
     public $comment;
-    public $post;
-    public $replyToComment;
 
-    public function replyTo($commentId)
+    protected $listeners = [
+        'comment-{comment.id}' => 'commentId',
+    ];
+
+    public function commentId()
     {
-        $this->replyToComment = $this->post->comments->find($commentId);
-        $this->dispatch('open-modal', $this->replyToComment, $this->replyToComment->user);
+        dd('comment id');
     }
 
-    public function delete($commentId)
+    public function replyTo()
     {
-        $comment = $this->post->comments->find($commentId);
+        $this->dispatch('open-modal', comment:$this->comment);
+    }
 
-        if ($comment->user_id !== auth()->id()) {
+    public function delete()
+    {
+        if ($this->comment->user_id !== auth()->id()) {
             $this->js(<<<JS
               Swal.fire({
               icon:'error',
@@ -31,15 +35,17 @@ class Comment extends Component
 
             return;
         }
-        $comment->delete();
+        $this->comment->delete();
 
         $this->js(<<<JS
-              Swal.fire({
-              icon:'success',
-              toast:true,
-              position: 'top-end',
-              showConfirmButton: false,
-              text: 'Comment deleted successfully!',
+               swal.fire({
+                title: 'Comment deleted successfully',
+                icon: 'success',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
             })
           JS);
 

@@ -8,11 +8,11 @@
           <span class="small">- {{$comment->created_at->diffForHumans()}}</span>
         </p>
         <div>
-          <a href="#" wire:click.prevent="replyTo({{$comment->id}})"><i class=" fas fa-reply fa-xs"></i><span class="small">
+          <a href="#" wire:click.prevent="replyTo"><i class=" fas fa-reply fa-xs"></i><span class="small">
               <i class="bi bi-reply"></i>
             </span></a>
 
-          <a href="#" wire:click.prevent='delete({{$comment->id}})'><i class=" fas fa-reply fa-xs"></i><span class="small">
+          <a href="#" wire:click.prevent='delete'><i class=" fas fa-reply fa-xs"></i><span class="small">
               <i class="bi bi-trash"></i>
             </span></a>
         </div>

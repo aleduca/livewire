@@ -1,3 +1,3 @@
 <div>
-    {{-- The Master doesn't talk, he acts. --}}
+  <button wire:click="$dispatch('teste-script', { id: 2,name:'joao'})">Dispatch</button>
 </div>
