@@ -9,33 +9,39 @@ use Livewire\Component;
 
 class PostCreate extends Component
 {
-    public PostForm $form;
+  public PostForm $form;
 
-    public function create()
-    {
-        // dd('create');
-        // $this->validate([
-        //     'title' => 'required',
-        //     'content' => 'required|min:15',
-        // ]);
+  public $tag;
 
-        $this->validate();
+  public $selectedTags = [];
 
-        Post::create([
-            'title' => $this->form->title,
-            'slug' => Str::slug($this->form->title),
-            'content' => $this->form->content,
-            'user_id' => 5,
-        ]);
+  public function create()
+  {
+    // $this->js('teste');
+    dd($this->selectedTags);
+    // dd('create');
+    // $this->validate([
+    //     'title' => 'required',
+    //     'content' => 'required|min:15',
+    // ]);
 
-        $this->form->title = '';
-        $this->form->content = '';
+    // $this->validate();
 
-        session()->flash('success', 'Post successfully created.');
-    }
+    // Post::create([
+    //   'title' => $this->form->title,
+    //   'slug' => Str::slug($this->form->title),
+    //   'content' => $this->form->content,
+    //   'user_id' => 5,
+    // ]);
 
-    public function render()
-    {
-        return view('livewire.post-create');
-    }
+    // $this->form->title = '';
+    // $this->form->content = '';
+
+    // session()->flash('success', 'Post successfully created.');
+  }
+
+  public function render()
+  {
+    return view('livewire.post-create');
+  }
 }
