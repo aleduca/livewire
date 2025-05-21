@@ -9,7 +9,7 @@ use Livewire\Component;
 class Login extends Component
 {
   #[Rule('required')]
-  public $email = 'davis.coleman@example.com';
+  public $email = 'larkin.melany@example.org';
   #[Rule('required')]
   public $password = 'password';
 

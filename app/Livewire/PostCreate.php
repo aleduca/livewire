@@ -17,27 +17,24 @@ class PostCreate extends Component
 
   public function create()
   {
-    // $this->js('teste');
-    dd($this->selectedTags);
-    // dd('create');
-    // $this->validate([
-    //     'title' => 'required',
-    //     'content' => 'required|min:15',
-    // ]);
+    $this->validate([
+      'title' => 'required',
+      'content' => 'required|min:15',
+    ]);
 
-    // $this->validate();
+    $this->validate();
 
-    // Post::create([
-    //   'title' => $this->form->title,
-    //   'slug' => Str::slug($this->form->title),
-    //   'content' => $this->form->content,
-    //   'user_id' => 5,
-    // ]);
+    Post::create([
+      'title' => $this->form->title,
+      'slug' => Str::slug($this->form->title),
+      'content' => $this->form->content,
+      'user_id' => 5,
+    ]);
 
-    // $this->form->title = '';
-    // $this->form->content = '';
+    $this->form->title = '';
+    $this->form->content = '';
 
-    // session()->flash('success', 'Post successfully created.');
+    session()->flash('success', 'Post successfully created.');
   }
 
   public function render()
