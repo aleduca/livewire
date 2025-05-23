@@ -71,12 +71,7 @@
           <div class="space-y-2 py-6">
             <div class="-mx-3">
               <button type="button" class="flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer" aria-controls="disclosure-1" aria-expanded="false" @click="open = !open">
-                Product
-                <!--
-                  Expand/collapse icon, toggle classes based on menu open state.
-
-                  Open: "rotate-180", Closed: ""
-                -->
+                Dropdown
                 <svg class="size-5 flex-none" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon" :class="open ? '' : 'rotate-180'">
                   <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
                 </svg>
