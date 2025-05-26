@@ -3,13 +3,13 @@
   hamburguerMenu:false
 }" @keydown.escape.window ="open = false">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-    <div class="flex lg:flex-1">
+    <div class="flex lg:flex-1" wire:ignore>
       <a href="#" class="-m-1.5 p-1.5">
         <span class="sr-only">Your Company</span>
         <img class="h-8 w-auto" src="{{ asset('storage/photos/logo.png') }}" alt="">
       </a>
     </div>
-    <div class="flex lg:hidden" x-show="hamburguerMenu">
+    <div class="flex lg:hidden" x-show="hamburguerMenu" wire:ignore>
       <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 cursor-pointer" @click="hamburguerMenu = false">
         <span class="sr-only">Open main menu</span>
         <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
@@ -17,16 +17,22 @@
         </svg>
       </button>
     </div>
-    <div class="hidden lg:flex lg:gap-x-12">
+    <div class="hidden lg:flex lg:gap-x-12" wire:ignore>
+      <a href="{{ route('home') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Home</a>
+      <a href="{{ route('posts') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Posts</a>
+      <a href="{{ route('posts') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Dashboard</a>
+    </div>
+    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+      @auth()
       <div class="relative">
         <button type="button" class="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 cursor-pointer outline-none" aria-expanded="false" @click="open = !open">
-          Dropdown
-          <svg :class="open ? '' : 'rotate-180'" class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+           <svg :class="open ? '' : 'rotate-180'" class="size-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
             <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
           </svg>
+          {{ auth()->user()->firstName }} {{ auth()->user()->lastName }}
         </button>
 
-        <div class="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5" x-show="open"
+        <div class="absolute top-full -right-0 w-[400px] z-10 mt-3 overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5" x-show="open"
           x-cloak
           x-transition:enter="transition ease-out duration-200"
           x-transition:enter-start="opacity-0 translate-y-1"
@@ -38,13 +44,10 @@
           <x-navbar-dropdown />
         </div>
       </div>
+      @else
+           <a href="{{ route('login') }}" wire:navigate class="text-sm/6 font-semibold text-gray-900 cursor-pointer">Log in <span aria-hidden="true">&rarr;</span></a>
+      @endauth
 
-      <a href="{{ route('home') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Home</a>
-      <a href="{{ route('posts') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Posts</a>
-      <a href="{{ route('posts') }}" class="text-sm/6 font-semibold text-gray-900" wire:navigate wire:current.exact='link-active'>Dashboard</a>
-    </div>
-    <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="#" class="text-sm/6 font-semibold text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
     </div>
   </nav>
 

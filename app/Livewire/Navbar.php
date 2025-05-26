@@ -6,9 +6,14 @@ use Livewire\Component;
 
 class Navbar extends Component
 {
-  // protected $listeners = [
-  //   'toggle-login' => '$refresh',
-  // ];
+  protected $listeners = [
+    'login' => '$refresh',
+  ];
+
+  public function logout()
+  {
+    $this->dispatch('logout');
+  }
 
   public function render()
   {

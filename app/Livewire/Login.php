@@ -3,14 +3,16 @@
 namespace App\Livewire;
 
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class Login extends Component
 {
-  #[Rule('required')]
+  #[Validate('required|email')]
   public $email = 'larkin.melany@example.org';
-  #[Rule('required')]
+  #[Validate('required')]
   public $password = 'password';
 
   public function login()
@@ -24,14 +26,15 @@ class Login extends Component
       return session()->flash('error', 'Email or password not found');
     }
 
-    $this->dispatch('toggle-login');
+    $this->dispatch('login');
   }
 
+  #[On('logout')]
   public function logout()
   {
     Auth::logout();
 
-    $this->dispatch('toggle-login');
+    return redirect()->route('home');
   }
 
   public function render()

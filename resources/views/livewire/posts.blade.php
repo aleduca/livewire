@@ -1,4 +1,6 @@
 <div>
+  <h2>Posts</h2>
+
   <div class="row mt-2 mb-2">
     <div class="input-group input-group-lg">
       <input wire:model.live.debounce.500ms='search' type="search" class="form-control form-control-lg rounded" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" />
