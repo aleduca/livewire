@@ -17,7 +17,8 @@
     <x-loading wire:target='login' />
   </form>
   @else
-  Bem vindo, {{ auth()->user()->firstName }} {{ auth()->user()->lastName }} <button wire:click='logout'>Logout</button>
+  Bem vindo, {{ auth()->user()->firstName }} {{ auth()->user()->lastName }}
+  <button wire:click='logout'>Logout</button>
   <x-loading wire:target='logout' />
   @endif --}}
 
